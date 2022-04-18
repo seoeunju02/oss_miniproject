@@ -175,3 +175,22 @@ void searchPrice(Product *s, int count){
      printf("\n");
  }
 
+ void searchDelivery(Product *s, int count){
+     int scnt=0;
+     int search;
+
+     printf("검색할 제품배송 방법은(1: 새벽배송,2: 택배배송)? ");
+     scanf("%d",&search);
+
+     printf("================================\n");
+     for(int i=0;i<count;i++){
+         if(s[i].price==-1) continue;
+         if(s[i].delivery==search){
+             printf("%2d",i+1);
+             readProduct(s[i]);
+             scnt++;
+         }
+     }
+     if(scnt==0) printf("=> 검색된 데이터 없음!");
+     printf("\n");
+ }
