@@ -8,6 +8,10 @@ int selectProduct(){
         printf("2. 추가\n");
         printf("3. 수정\n");
         printf("4. 삭제\n");
+        printf("5. 파일저장\n");
+        printf("6. 제품이름 검색\n");
+        printf("7. 제품가격 검색\n");
+        printf("8. 제품배송 방법 검색(1: 새벽배송,2: 택배배송)\n");
         printf("0. 종료\n");
         printf("------------------\n");
         printf("==>");
