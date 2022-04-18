@@ -95,3 +95,19 @@ int selectDataNo(Product *s, int count){
     scanf("%d",&no);
     return no;
 }
+
+void saveData(Product *s,int count){
+        FILE *fp;
+        fp=fopen("product.txt","wt");
+
+        for(int i=0; i<count;i++){
+                if(s[i].price==-1) continue;
+                fprintf(fp,"제품명:  %s\n",s[i].name);
+                fprintf(fp,"제품설명: %s\n",s[i].explain);
+                fprintf(fp,"제품중량: %sg\n",s[i].gram);
+                fprintf(fp,"제품 가격: %d원\n",s[i].price);
+                fprintf(fp,"제품배송방법(1: 새벽배송,2: 택배배송): %d\n",s[i].delivery);
+        }
+        fclose(fp);
+        printf("=> 저장되었습니다");
+}
