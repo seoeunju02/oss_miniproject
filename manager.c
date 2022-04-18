@@ -111,3 +111,25 @@ void saveData(Product *s,int count){
         fclose(fp);
         printf("=> 저장되었습니다");
 }
+
+int loadData(Product *s){
+        int count=0,i=0,fileno=0;
+        FILE *fp;
+         fp=fopen("score.txt","rt");
+         if(fp==NULL){
+                 printf("=> 파일 없음\n");
+                 fp=fopen("score.txt","w");
+                fileno=1;
+         }
+         for(;i<20;i++){
+          if(feof(fp)) break; //feof은 파일의 마지막이라는 뜻
+                 fscanf(fp,"%s",s[i].name);
+                 fscanf(fp,"%s",s[i].explain);
+                 fscanf(fp,"%s",s[i].gram);
+                 fscanf(fp,"%d",&s[i].price);
+                 fscanf(fp,"%d",&s[i].delivery);
+         }
+         fclose(fp);
+         if(fileno==0)printf("=> 로딩 성공!\n");
+         return i;
+}
