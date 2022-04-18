@@ -1,5 +1,7 @@
 #include<stdio.h>
 #include "manager.h"
+#include<stdlib.h>
+#include <string.h>
 
 int main(void){
     Product s[20];
