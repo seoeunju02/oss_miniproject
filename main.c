@@ -11,12 +11,22 @@ int main(void){
 	printf("=> DEBUGMODE\n");
 #endif
     int counts=loadData(s);
-    if(counts<0) index=counts;   	
+    if(counts<0) index=counts;
     while (count<20){
         menu = selectProduct();
         if (menu == 0) break;
-        if (menu == 1)  listProduct(s,index);
-        else if (menu == 2) count+=addProduct(&s[index++]);
+        if (menu == 1){
+            if(counts>0&&counts!=20){
+                listProduct(s,index);  
+            }
+            else listProduct(s,index);
+        }
+        else if (menu == 2){
+            if(counts>0&&counts!=20){
+                counts+=addProduct(&s[counts-1]);
+            }
+            else count+=addProduct(&s[index++]);
+        } 
         else if (menu == 3){
             int no=selectDataNo(s,index);
             if(no==0){
@@ -38,7 +48,19 @@ int main(void){
                 if(deleteProduct(&s[no-1])) count--;
             }
         }
+        else if(menu==5){
+            saveData(s,index);
+        }
+        else if(menu ==6){
+            searchProduct(s,index);
+        }
+        else if(menu==7){
+            searchPrice(s,index);
+        }
+        else if(menu==8){
+            searchDelivery(s,index);
+        }
     }
     printf("종료됨!\n");
     return 0;
-}
+}    
