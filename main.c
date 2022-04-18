@@ -9,7 +9,9 @@ int main(void){
     int index=0; //데이터 번호
 #ifdef DEBUG
 	printf("=> DEBUGMODE\n");
-#endif 
+#endif
+    int counts=loadData(s);
+    if(counts<0) index=counts;   	
     while (count<20){
         menu = selectProduct();
         if (menu == 0) break;
