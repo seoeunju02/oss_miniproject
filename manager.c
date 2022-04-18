@@ -24,14 +24,14 @@ int selectProduct(){
 
 int addProduct(Product *s){
 #ifdef DEBUG
-	printf("=> DEBUGMODE\n");
+        printf("=> DEBUGMODE\n");
 #endif
         printf("제품명은? ");
         getchar();
-        scanf("%[^\n]s",s->name);
+        scanf(" %[^\n]s",s->name);
         printf("제품 설명은? ");
         getchar();
-        scanf("%[^\n]s",s->explain);
+        scanf(" %[^\n]s",s->explain);
         printf("제품 중량은? ");
         scanf("%s",s->gram);
         printf("제품 가격은? ");
@@ -44,10 +44,10 @@ int addProduct(Product *s){
 int updateProduct(Product *s){
         getchar();
         printf("제품명은? ");
-        scanf("%[^\n]s",s->name);
+        scanf(" %[^\n]s",s->name);
         printf("제품 설명은? ");
         getchar();
-        scanf("%[^\n]s",s->explain);
+        scanf(" %[^\n]s",s->explain);
         getchar();
         printf("제품 중량은? ");
         scanf("%s",s->gram);
@@ -58,6 +58,7 @@ int updateProduct(Product *s){
         return 1;
 }
 
+
 int deleteProduct(Product *s){
         s->price=-1;
         printf("=> 삭제되었습니다.\n");
@@ -67,7 +68,7 @@ int deleteProduct(Product *s){
 
 void readProduct(Product s){
         if(s.price >0){
-		printf("\n");
+                printf("\n");
                 printf("제품명:  %s\n",s.name);
                 printf("제품설명: %s\n",s.explain);
                 printf("제품중량: %sg\n",s.gram);
@@ -79,7 +80,7 @@ void readProduct(Product s){
 
 void listProduct(Product *s,int count){
 #ifdef DEBUG
-	printf("=> DEBUGMODE\n");
+        printf("=> DEBUGMODE\n");
 #endif
     printf("================================\n");
     for(int i=0; i<count;i++){
@@ -97,25 +98,25 @@ int selectDataNo(Product *s, int count){
     scanf("%d",&no);
     return no;
 }
-
 void saveData(Product *s,int count){
         FILE *fp;
         fp=fopen("product.txt","wt");
 
         for(int i=0; i<count;i++){
                 if(s[i].price==-1) continue;
-                fprintf(fp,"제품명:  %s\n",s[i].name);
-                fprintf(fp,"제품설명: %s\n",s[i].explain);
-                fprintf(fp,"제품중량: %sg\n",s[i].gram);
-                fprintf(fp,"제품 가격: %d원\n",s[i].price);
-                fprintf(fp,"제품배송방법(1: 새벽배송,2: 택배배송): %d\n",s[i].delivery);
+                fprintf(fp,"%s\n",s[i].name);
+                fprintf(fp,"%s\n",s[i].explain);
+                fprintf(fp,"%s %d %d\n",s[i].gram,s[i].price,s[i].delivery);
+                // fprintf(fp,"%sg\n",s[i].gram);
+                // fprintf(fp,"%d원\n",s[i].price);
+                // fprintf(fp,"%d\n",s[i].delivery);
         }
         fclose(fp);
         printf("=> 저장되었습니다");
 }
 
 int loadData(Product *s){
-        int i=0,fileno=0;
+        int count=0,i=0,fileno=0;
         FILE *fp;
          fp=fopen("product.txt","rt");
          if(fp==NULL){
@@ -125,8 +126,8 @@ int loadData(Product *s){
          }
          for(;i<20;i++){
           if(feof(fp)) break; //feof은 파일의 마지막이라는 뜻
-                 fscanf(fp,"%s",s[i].name);
-                 fscanf(fp,"%s",s[i].explain);
+                 fscanf(fp," %[^\n]s",s[i].name);
+                 fscanf(fp," %[^\n]s",s[i].explain);
                  fscanf(fp,"%s",s[i].gram);
                  fscanf(fp,"%d",&s[i].price);
                  fscanf(fp,"%d",&s[i].delivery);
@@ -138,10 +139,10 @@ int loadData(Product *s){
 
 void searchProduct(Product *s, int count){
      int scnt=0;
-     char search[20];
+     char search[100];
 
      printf("검색할 제품? ");
-     scanf("%s",search);
+     scanf(" %[^\n]s",search);
 
      printf("================================\n");
      for(int i=0;i<count;i++){
@@ -154,10 +155,10 @@ void searchProduct(Product *s, int count){
      }
      if(scnt==0) printf("=> 검색된 데이터 없음!");
      printf("\n");
-
+    
  }
 
-void searchPrice(Product *s, int count){
+ void searchPrice(Product *s, int count){
      int scnt=0;
      int search;
 

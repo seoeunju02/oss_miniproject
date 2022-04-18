@@ -1,15 +1,13 @@
 #include<stdio.h>
-#include "manager.h"
-#include<stdlib.h>
+#include <stdlib.h>
 #include <string.h>
+#include "manager.h"
 
 int main(void){
     Product s[20];
     int count = 0, menu;
     int index=0; //데이터 번호
-#ifdef DEBUG
-	printf("=> DEBUGMODE\n");
-#endif
+
     int counts=loadData(s);
     if(counts<0) index=counts;
     while (count<20){
@@ -17,7 +15,7 @@ int main(void){
         if (menu == 0) break;
         if (menu == 1){
             if(counts>0&&counts!=20){
-                listProduct(s,index);  
+                listProduct(s,counts-1);  
             }
             else listProduct(s,index);
         }
@@ -63,4 +61,4 @@ int main(void){
     }
     printf("종료됨!\n");
     return 0;
-}    
+}
