@@ -115,12 +115,12 @@ void saveData(Product *s,int count){
 }
 
 int loadData(Product *s){
-        int count=0,i=0,fileno=0;
+        int i=0,fileno=0;
         FILE *fp;
-         fp=fopen("score.txt","rt");
+         fp=fopen("product.txt","rt");
          if(fp==NULL){
                  printf("=> 파일 없음\n");
-                 fp=fopen("score.txt","w");
+                 fp=fopen("product.txt","w");
                 fileno=1;
          }
          for(;i<20;i++){
